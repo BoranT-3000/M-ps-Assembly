@@ -1,0 +1,38 @@
+.data
+     msg:  .asciiz "what is your name?\n"
+     name:.space 20  #array of bytes
+     name2:.asciiz "hello "
+.text
+.globl main
+       main:
+       
+        #display msg       
+       li $v0,4
+       la $a0,msg
+       syscall
+      
+       
+       #getting user's input as text
+       li $v0,8
+       la $a0,name
+       li $a1,20
+       syscall
+       
+       
+       #say hello 
+       li $v0,4
+       la $a0,name2
+       syscall
+      
+       #display the name
+       li $v0,4
+       la $a0,name
+       syscall
+       
+       #ending return 0
+       li $v0,10
+       syscall
+       
+       
+       
+       

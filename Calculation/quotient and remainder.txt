@@ -1,0 +1,30 @@
+.data
+dikkat1:.asciiz "quotient(lo): "
+dikkat2:.asciiz "\nremainder(hi): " 
+.text
+  
+     addi $t0,$zero,30 #li $t0,30
+     addi $t1,$zero,8  #li $t1,5
+     
+     div $t0,$t1
+     
+     mflo $s0 #quotient
+     mfhi $s1 #remainder
+     
+     li  $v0,4
+     la $a0,dikkat1
+     syscall
+     
+     li $v0,1
+     move $a0,$s0 
+     syscall
+     
+     li $v0,4
+     la $a0,dikkat2
+     syscall
+     
+     li $v0,1
+     move $a0,$s1
+     syscall
+     
+     #quotient goes low (mflo), remainder goes to high (mfhi)

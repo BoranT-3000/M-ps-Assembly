@@ -1,0 +1,31 @@
+.data
+    Hello:  .asciiz "Hello my name is micheal"  #asciiz for string 
+    Age:    .word 21 #.word 32 bit 4byte for int
+    body:  .asciiz "\nTshirt size is " 
+    body2: .byte 'M' 
+    PI:     .float 3.1415
+    newline:.byte '\n'
+.text
+   li $v0,4    #li load immediate 
+   la $a0,Hello#la load argument
+   syscall     # do it call 
+   
+   li $v0,1   #call int output
+   lw $a0,Age #load word means 32 bit register to be store
+   syscall
+   
+   li $v0,4    #string output
+   la $a0,body #load adress
+   syscall
+   
+   li $v0,4    
+   la $a0,body2 
+   syscall
+   
+   li $v0,4
+   la $a0,newline
+   syscall
+   
+   li $v0,2     #float initilazer is 2
+   lwc1 $f12,PI #load word coprocessor1 and $f12 only
+   syscall
